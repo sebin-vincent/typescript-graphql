@@ -5,6 +5,7 @@ import { Category } from './resolvers/category';
 import { Product } from './resolvers/product';
 import { categories, products,reviews } from './db';
 import { Query } from './resolvers/query';
+import { Mutation } from './resolvers/mutation';
 
 
 
@@ -13,6 +14,7 @@ dotenv.config();
 
 const resolvers = {
   Query,
+  Mutation,
   Category,
   Product
 };

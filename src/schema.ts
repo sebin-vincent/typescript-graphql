@@ -1,39 +1,47 @@
-import { gql } from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
-    type Query {
-        categories: [Category!]!,
-        category(id: ID!): Category,
-        products: [Product]!,
-        product(id: ID!): Product
-    }
+  type Query {
+    categories: [Category!]!
+    category(id: ID!): Category
+    products: [Product]!
+    product(id: ID!): Product
+  }
 
-    type Product{
-        id: ID!
-        name: String!,
-        description: String!,
-        quantity: Int!,
-        price: Float!,
-        onSale: Boolean!,
-        category: Category!,
-        reviews: [Review!]!
-    }
+  type Mutation {
+    addCategory(input: addCategoryInput!): Category!
+  }
 
-    type Category{
-        id: ID!,
-        name: String!,
-        products(input: CategoryFilterInput): [Product!]!
-    }
+  type Product {
+    id: ID!
+    name: String!
+    description: String!
+    quantity: Int!
+    price: Float!
+    onSale: Boolean!
+    category: Category!
+    reviews: [Review!]!
+  }
 
-    type Review{
-        id: ID!,
-        date: String!,
-        comment: String!,
-        rating: Int!,
-    }
+  type Category {
+    id: ID!
+    name: String!
+    products(input: CategoryFilterInput): [Product!]!
+  }
 
-    input CategoryFilterInput{
-        productOnSale: Boolean,
-        averageProductRating: Int
-    }
+  type Review {
+    id: ID!
+    date: String!
+    comment: String!
+    rating: Int!
+  }
+
+  input CategoryFilterInput {
+    productOnSale: Boolean
+    averageProductRating: Int
+  }
+
+  input addCategoryInput {
+    name: String!
+  }
 `;
